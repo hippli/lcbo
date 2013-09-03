@@ -10,12 +10,6 @@ class HtmlGenerator
     parsed_response = JSON.parse(raw_response)
     products = parsed_response[ "result"]
 
-    
-    # products_name = products.map {|products| "<li>" + products["name"] + "</li>"}
-    # puts products_name
-
-    # puts products
-
     products.each do |product|
       puts "<div class='product'>"
       puts "  <h2>#{product['name']}</h2>"
@@ -26,27 +20,18 @@ class HtmlGenerator
       puts "    <li>#{product['primary_category']}</li>"
       puts "    <li>#{product['secondary_category']}</li>"
       puts "    <li>#{product['volume_in_milliliters']} ml</li>"
-      # puts "    <li>$#{format_price(product['price_in_cents'])}</li>"
+     # puts "    <li>$#{format_price(product['price_in_cents'])}</li>"
       puts "  </ul>"
       puts "</div>"
     end
-
-
-
   end
 
-
   def show(product_id=18)
-    # puts "show and #{product_id}"
 
-    puts "HtmlGenerator: index"
+    puts "HtmlGenerator: product #{product_id}"
     raw_response = open("http://lcboapi.com/products/#{product_id}").read
     parsed_response = JSON.parse(raw_response)
-    products = parsed_response[ "result"]
-    puts products   
-
-    # products_name = products.map {|products| products["name"]}
-    # puts products_name
+    product = parsed_response[ "result"]
 
     puts "<div class='product'>"
     puts "  <h2>#{product['name']}</h2>"
@@ -65,19 +50,6 @@ class HtmlGenerator
     puts "    <li>Tags: #{product['tags']}</li>"
     puts "  </ul>"
     puts "</div>"
-
-
-  end
-
-
-  def print_header
-
-  end
-
-
-
-
-  def print_footer
 
   end
 
